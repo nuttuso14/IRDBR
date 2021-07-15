@@ -84,9 +84,11 @@ public:
 
     void updateDrbDepartureTime(){
         if(num_drb>0){
+            //cout << "======================numdrb :" << num_drb <<endl;
             list<UE*>::iterator itr = drb_list.begin();
             for(; itr!=drb_list.end(); itr++){
                 (*itr)->updateDepartureTime();
+               // cout << "(*itr)->departure_time:"<<(*itr)->departure_time<<endl;
             }
         }        
     }
@@ -273,6 +275,9 @@ public:
     }*/
 
     void QosAwarnessRelocateBw(double wifi_mean_time_connected, double Ps, int algo){
+       // cout << "In QoS_fn ==========" <<endl;
+       // cout << "wifi_mean_time_connected="<< wifi_mean_time_connected <<endl;
+
         int numDRBnotMissDeadline = 0;
         {
             list<UE*>::iterator itr = drb_list.begin();
@@ -285,9 +290,10 @@ public:
         if(numDRBnotMissDeadline > 1){
             double total_shared_bw = 0;
             list<UE*>::iterator itr = drb_list.begin();
-
-            for(; itr!=drb_list.end(); itr++){
-                if((*itr)->flag_deadline_miss == false){
+            for(; itr!=drb_list.end(); itr++)
+            {
+                if((*itr)->flag_deadline_miss == false)
+                {
                     if((*itr)->deadline < (*itr)->current_time)exit(1);
                     double tm = 0;
                     bool Qsatisfied = false;
@@ -295,13 +301,33 @@ public:
                     double b1 = (*itr)->lte_bw;
                     double b2 = (*itr)->wifi_bw;
                     double td = (*itr)->deadline - (*itr)->current_time;
+
+                    /*cout << "(*itr)->lte_bw="<< (*itr)->lte_bw <<endl;
+                    cout << "(*itr)->wifi_bw="<< (*itr)->wifi_bw <<endl;
+                    cout << "(*itr)->deadline="<< (*itr)->deadline <<endl;
+                    cout << "(*itr)->current_time="<< (*itr)->current_time <<endl;*/
                     
 
                     tm = (Vr - b1*td)/b2;
                     if(tm<0) tm = 0;
                     Qsatisfied = exp(-wifi_mean_time_connected*tm);
+                    /*cout << "==========================================" <<endl;
+                    cout << "Vr:"<< Vr <<endl;
+                    cout << "b1:"<< b1 <<endl;
+                    cout << "b2:"<< b2 <<endl;
+                    cout << "td:"<< td <<endl;
+                    cout << "tm:"<< tm <<endl;
+                    cout << "wifi_mean_time_connected:"<< wifi_mean_time_connected <<endl;
+                    cout << "-wifi_mean_time_connected*tm:"<< -wifi_mean_time_connected*tm <<endl;
+                    cout << "exp(-wifi_mean_time_connected*tm):"<< exp(-wifi_mean_time_connected*tm) <<endl;
+                    cout << "Qsatisfied:"<< Qsatisfied <<endl;
+                    cout << "==========================================" <<endl;*/
 
                     double b1_star = (Vr + 1/wifi_mean_time_connected * tm * b2 * log(Ps)) / td;
+                   /* if(isnan(b1_star))
+                    {
+                        cout << "(Is_nan) td:"<< td <<endl;
+                    }*/
                     if(b1_star<0) b1_star=0;
                     (*itr)->b1_star = b1_star;
                     
@@ -314,17 +340,31 @@ public:
                     else{
                         (*itr)->QosSatisfied = false;
                     }
+                    //cout << "b1_star:"<< b1_star <<endl;
+                   // cout << "total_shared_bw:"<< total_shared_bw <<endl;                
                 }
             }
+            //cout << "What is algo :" << algo <<endl;
             if(algo = QEDF)
+            {
+               // cout << "before function :" << total_shared_bw <<endl;
                 QEDFdistributeBW(total_shared_bw);
+               // cout << "Finish function :" << total_shared_bw <<endl;
+            }    
             else if(algo = QSSF)
+            {
                 QSSFdistributeBW(total_shared_bw);
+            }
+
         }
     }
 
-    void QEDFdistributeBW(double totalSharedBw){
-        while(totalSharedBw > 0){
+    void QEDFdistributeBW(double totalSharedBw)
+    {
+        //cout << "in QEDF loop =====" <<endl;
+        //cout << "totalSharedBw:"<<totalSharedBw<<endl;
+        while(totalSharedBw > 0)
+        {
             list<UE*>::iterator drbWithShortestTd;
             double shortestTd = 0;
 
@@ -365,7 +405,8 @@ public:
                 totalSharedBw = 0;
             }
         }
-        if(totalSharedBw >= 1){
+        if(totalSharedBw >= 1)
+        {
             double num_drb_not_miss_deadline = 0;
             {
                 list<UE*>::iterator itr = drb_list.begin();
@@ -376,17 +417,23 @@ public:
             }
             
             double distributedBw = totalSharedBw/num_drb_not_miss_deadline;
-            list<UE*>::iterator itr = drb_list.begin();
-            for(; itr!=drb_list.end(); itr++){
-                if((*itr)->flag_deadline_miss==false){
-                    (*itr)->lte_bw = (*itr)->lte_bw + distributedBw;
-                    (*itr)->bandwidth = (*itr)->lte_bw + (*itr)->wifi_bw;
-                }               
+            if(num_drb_not_miss_deadline>0)
+            {
+                list<UE*>::iterator itr = drb_list.begin();
+                for(; itr!=drb_list.end(); itr++){
+                    if((*itr)->flag_deadline_miss==false){
+                        (*itr)->lte_bw = (*itr)->lte_bw + distributedBw;
+                        (*itr)->bandwidth = (*itr)->lte_bw + (*itr)->wifi_bw;
+                    }               
+                }
             }
+
         }
+        //cout << "Finally total share is :" <<totalSharedBw<<endl;
     }
 
     void QSSFdistributeBW(double totalSharedBw){
+
         while(totalSharedBw > 0){
             list<UE*>::iterator drbWithMinVr;
             double MinVr = 0;

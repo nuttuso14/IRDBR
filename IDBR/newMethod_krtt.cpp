@@ -292,13 +292,13 @@ int main(int argc, char** argv)
 
 
     deadline = 500;
-    algo = 4;
+    algo = 0;
     alpha = 0.5;
     Ps = 0.9;
     satisfaction_b = 1.2;
     p_mean_file_size = 3072;  // Unit is MB
     sdbr_r = 0;
-    idbr = 1;
+    idbr = 0;
 
     if(idbr)
     {
@@ -387,6 +387,8 @@ int main(int argc, char** argv)
         enb.updateDrbTransfer();
 
         if(current_time >= MAX_TIME_SIMULATION){
+            //cout << "current_time:"<<current_time<<endl;
+            //cout << "MAX_TIME_SIMULATION:"<<MAX_TIME_SIMULATION<<endl;
             break;
         }
 
@@ -423,6 +425,7 @@ int main(int argc, char** argv)
                     else if(algo==QEDF || algo==QSSF)
                     {
                         enb.QosAwarnessRelocateBw(wifi_mean_time_connected, Ps, algo);
+                        //cout << "Finish reallocate on event ARRIVAL" <<endl;
                     } 
                     else if(algo==SDBR)
                     {
@@ -592,6 +595,13 @@ int main(int argc, char** argv)
                         }
                     }
 
+                   /* cout << "go to this loop ========" <<endl;
+                    cout << "drb_time_spend:" <<drb_time_spend<<endl;
+                    cout << "offloading_fee:" <<offloading_fee<<endl;
+                    cout << "satisfaction_a:" <<satisfaction_a<<endl;
+                    cout << "satisfaction_b:" <<satisfaction_b<<endl;
+                    cout << "money:" <<money<<endl;
+                    cout << "sta_money_earned:" <<sta_money_earned<<endl;*/
                 }
 
 
@@ -629,7 +639,11 @@ int main(int argc, char** argv)
                 if(algo==DBR)
                     enb.DBRreallocate(alpha);
                 else if(algo==QEDF || algo==QSSF)
+                {
                     enb.QosAwarnessRelocateBw(wifi_mean_time_connected, Ps, algo);
+                    //cout << "From Depature Event"<<endl;
+                }
+                    
                 else if(algo==SDBR)
                 {
                     if(enb.num_drb <= enb.max_num_drb)
@@ -932,9 +946,11 @@ int main(int argc, char** argv)
                         若不夠
                             drbupdate.lackbw = true;
                     }  */
-
+               // cout << " Fixed QEDF ::::::::: WiFi Update" <<endl;
                 list<UE*>::iterator drbWifiUpdate = enb.findDrbWifiUpadate(this_event->getTimeStamp());
                 //wifi turn false
+
+                //cout << "(*drbWifiUpdate)->wifi_status : " << (*drbWifiUpdate)->wifi_status<<endl;
                 if((*drbWifiUpdate)->wifi_status == 0)
                 {
                     double P0 = wifi_mean_time_disconnected/(wifi_mean_time_disconnected 
@@ -957,7 +973,7 @@ int main(int argc, char** argv)
                     double chageStatus = getWifiStatus(plist,3);
                     (*drbWifiUpdate)->wifi_status = chageStatus+1;
 
-                    
+                   // cout << "Fix QEDF: chageStatus :" << (*drbWifiUpdate)->wifi_status <<endl; 
                     /*cout << "====== Before WiFi status:0 ======" <<endl;
                     cout << "P01:" << P01 <<endl;
                     cout << "P02:" << P02 <<endl;
@@ -966,7 +982,7 @@ int main(int argc, char** argv)
                     cout << "plist[1]:" << plist[1] <<endl;
                     cout << "plist[2]:" << plist[2] <<endl;
                     cout << "====== WiFi Status is " << (*drbWifiUpdate)->wifi_status << endl;*/
-                    break;
+                    //break;
                 }
                 else if((*drbWifiUpdate)->wifi_status == 1)
                 {
@@ -1050,6 +1066,9 @@ int main(int argc, char** argv)
                 } 
                 
                 // after change status
+
+                //cout << "After :::::::(*drbWifiUpdate)->wifi_status : " << (*drbWifiUpdate)->wifi_status<<endl;
+
                 if((*drbWifiUpdate)->wifi_status == 0)
                 {
                     //cout << "======== This is loop 0" << endl;
@@ -1664,8 +1683,8 @@ void creatEvent(int enbId ,int eventType, double timeStamp){
 void creatNearestEvent(){
     EData nearestEvent = enb.findNearestEventOfDrb(FEATURE_WIFI, FEATURE_DEADLINE);
     Event* nextArrivalEvent = e_list->findNextArrival(EVENT_ARRIVAL);
-    // cout<<"Nearest Event time: "<<nearestEvent.eventTime<<endl
-    //     <<"Nearest Event Type: "<<nearestEvent.eventType<<endl<<endl;
+     //cout<<"Nearest Event time: "<<nearestEvent.eventTime<<endl
+         //<<"Nearest Event Type: "<<nearestEvent.eventType<<endl<<endl;
     if(nearestEvent.eventTime < nextArrivalEvent->getTimeStamp()){
         creatEvent(0, nearestEvent.eventType, nearestEvent.eventTime);
     }
