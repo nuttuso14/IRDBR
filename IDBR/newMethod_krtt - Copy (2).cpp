@@ -282,24 +282,23 @@ int main(int argc, char** argv)
     
     cout << "Welcome to IDBR Jaaa!!!" <<endl;
     
-    enb_mean_time_arrival = 1/strtod(argv[1], NULL);;
-    enb_mean_time_service = strtod(argv[2], NULL);;
-    max_drb_served_by_enb = atoi(argv[3]);
+    enb_mean_time_arrival = 1/0.1;
+    enb_mean_time_service = 1500;
+    max_drb_served_by_enb = 10;
 
-    wifi_mean_time_connected = strtod(argv[4], NULL);
-    wifi_mean_time_disconnected = strtod(argv[5], NULL);;
-
-    deadline = strtod(argv[6], NULL);
-    algo = strtod(argv[7],NULL);
-    alpha = strtod(argv[8], NULL);
-    Ps = strtod(argv[9],NULL);
-    satisfaction_b = strtod(argv[10],NULL);
-    p_mean_file_size = strtod(argv[11],NULL);  // Unit is MB
-    sdbr_r = 0;
-    idbr = atoi(argv[12]);
-
-
+    wifi_mean_time_disconnected = 439;
+    wifi_mean_time_connected = 50000;
     lambda0 = 1/wifi_mean_time_disconnected;
+
+
+    deadline = 500;
+    algo = 0;
+    alpha = 0.5;
+    Ps = 0.9;
+    satisfaction_b = 1.2;
+    p_mean_file_size = 3072;  // Unit is MB
+    sdbr_r = 0;
+    idbr = 0;
 
     if(idbr)
     {
