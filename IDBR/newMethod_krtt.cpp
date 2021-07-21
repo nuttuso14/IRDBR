@@ -306,7 +306,7 @@ int main(int argc, char** argv)
         cout << "================ IDBR ================" <<endl;
     }
 
-    p_mean_UE_bugget = 300;
+    p_mean_UE_bugget = 60;
 
     double pareto_l = p_mean_file_size*(PARETO_SH-1)/PARETO_SH;
     rnd_file_size.SetShape(PARETO_SH);
@@ -336,12 +336,28 @@ int main(int argc, char** argv)
     //creatEvent(0, EVENT_SAMPLING, current_time + rv_time_sampling++);
     //fp.open(file_name);
     bool first_departure  = false;
-    ww[0] = WiFi(1,2,40,10,45,60.5,wifi_mean_time_connected,50,50,50,0.5,0.02);
-    ww[1] = WiFi(2,4,50,1,45,100,wifi_mean_time_connected,100,100,100,0.5,0.05);
-    ww[2] = WiFi(3,10,60,0.5,85,100,wifi_mean_time_connected,200,200,200,0.1,0.01);
-    ww[3] = WiFi(4,5,40,2.5,35,80,wifi_mean_time_connected,15,15,15,0.3,0.02);
-    ww[4] = WiFi(5,15,60,25,55,99,wifi_mean_time_connected,5,5,5,0.2,0.01);
-    ww[5] = WiFi(6,30,5,0.5,6,8,wifi_mean_time_connected,500,500,500,0,0);
+    int ni[6] = {2,4,10,5,15,30};
+    double bw[6] = {60,60,60,60,60,60};
+    double r1_bw[6] = {40,30,5,5,5,1};
+    double r2_bw[6] = {60,50,80,50,80,65};
+    double r3_bw[6] = {80,100,90,120,90,100};
+    double t1_time[6] = {30,60,150,100,5,300};
+    double t2_time[6] = {30,60,150,100,5,300};
+    double t3_time[6] = {30,60,150,100,5,300};
+    double discount[6] = {0.5,0.5,0.1,0.3,0.2,0};
+    double price_ap[6] = {0.02,0.05,0.01,0.02,0.01,0};
+
+    /*for(int i=0;i<=N_WIFI_AP;i++)
+    {
+        ww[5] = WiFi((i+1),ni[i],bw[i],r1_bw[i],r2_bw[i],r3_bw[i],wifi_mean_time_connected,t1_time[i],t2_time[i],t3_time[i],discount[i],price_ap[i]);
+    }*/
+
+    ww[0] = WiFi(1,ni[0],40,10,45,60.5,wifi_mean_time_connected,50,50,50,0.5,0.02);
+    ww[1] = WiFi(2,ni[1],50,1,45,100,wifi_mean_time_connected,100,100,100,0.5,0.05);
+    ww[2] = WiFi(3,ni[2],60,0.5,85,100,wifi_mean_time_connected,200,200,200,0.1,0.01);
+    ww[3] = WiFi(4,ni[3],40,2.5,35,80,wifi_mean_time_connected,15,15,15,0.3,0.02);
+    ww[4] = WiFi(5,ni[4],60,25,55,99,wifi_mean_time_connected,5,5,5,0.2,0.01);
+    ww[5] = WiFi(6,ni[5],5,0.5,6,8,wifi_mean_time_connected,500,500,500,0,0);
 
     /*ww[0] = WiFi(1,2,40,10,45,60.5,wifi_mean_time_connected,30,30,30,0.5,0.02);
     ww[1] = WiFi(2,4,50,1,45,100,wifi_mean_time_connected,30,30,30,0.5,0.05);
@@ -1294,18 +1310,19 @@ int main(int argc, char** argv)
              //<<o_mean_money_per_time_unit<< " "
              <<sta_money_earned<<" "
              <<o_blocking_prob<<" "
+             <<o_mean_money_earned_per_user<<" "
              //<<o_mean_bandwidth<<endl
             //  <<o_mean_wifi_bandwidth<<" "
             //  <<o_mean_lte_bandwidth<<" "
             //  <<o_mean_service_time<<" "
             //  <<o_successful_download_time<<" "
-             //<<sta_file_size/count_drb_finished<<endl
-             //<<o_primary_resource_saved<<endl
-            //  <<o_deadline_miss_rario<<" "
+             <<sta_file_size/count_drb_finished<<" "
+             <<o_primary_resource_saved<<" "
+             <<o_deadline_miss_rario<<endl;
             //  <<o_mean_user_in_sys<<endl;            
              //<<count_drb_finished_by_deadline<<endl;
              //<<o_mean_money_earned_from_success_user<<endl;
-             <<o_mean_money_earned_per_user<<endl;
+            // <<o_mean_money_earned_per_user<<endl;
             //  <<o_deadline_miss_rario<<" "
             //  <<o_mean_user_in_sys<<endl;
              //<<o_revenue_per_indigenous<<" ";
