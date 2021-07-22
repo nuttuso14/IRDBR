@@ -8,7 +8,7 @@ wifi_mean_time_connected=1679
 wifi_mean_time_disconnected=439 
 deadline=600 
 Ps=0.9 
-idbr=0 
+idbr=1
 alpha=0.5 
 # interArrivalT=1 
 # b=1.2 
@@ -16,12 +16,13 @@ mean_file_size=3072
 # j=1 
 for b in 1.2 
 do 
-    for algo in 2 3 
-    # for algo in 0 1 4 2 3 
+    #for algo in 0 1 4 2 3
+    for algo in 4 
+    #for algo in 0 1 4 2 3 
     do 
             # for interArrivalT in $(seq 1 5) 
             #for arrRate in 0.01 0.05 0.1 0.2 0.3 0.4 0.5 1 3 5 10 50   
-             #for arrRate in 0.01 0.02 0.03 0.04 0.05 0.1 0.5 1 5 10 
+            #for arrRate in 0.01 0.02 0.03 0.04 0.05 0.1 0.5 1 5 10 
             for arrRate in 0.01 0.02 0.03 0.04 0.05 0.1 0.5 1 5 10 
             # for j in 0.01 0.05 0.1 0.5 1 5 10 25 50 75 100 250 500 750 1000 
             # for j in 25 50 75 100 250 500 750 1000 
