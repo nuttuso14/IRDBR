@@ -28,7 +28,7 @@
 #define PROB_VIP_MEMBER 0.5
 
 #define P_MAX 1.0
-#define PARETO_SH 1.8
+#define PARETO_SH 1.2
 #define N_WIFI_AP 5
 //#define MAX_NUM_UE_DEPARTURE 100000
 #define MAX_TIME_SIMULATION 3000000
@@ -306,7 +306,8 @@ int main(int argc, char** argv)
         cout << "================ IDBR ================" <<endl;
     }
 
-    p_mean_UE_bugget = 700;
+    p_mean_UE_bugget = 60;
+    cout << "p_mean_UE_bugget:" << p_mean_UE_bugget <<endl;
 
     double pareto_l = p_mean_file_size*(PARETO_SH-1)/PARETO_SH;
     rnd_file_size.SetShape(PARETO_SH);

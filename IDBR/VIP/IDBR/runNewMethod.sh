@@ -6,13 +6,13 @@ max_drb_served_enb=10
 wifi_bw=60 
 wifi_mean_time_connected=1679 
 wifi_mean_time_disconnected=439 
-deadline=20
+deadline=600
 Ps=0.9 
 idbr=1
 alpha=0.5 
 # interArrivalT=1 
 # b=1.2 
-mean_file_size=170 
+mean_file_size=3072 
 # j=1 
 for b in 1.2 
 do 
@@ -22,7 +22,7 @@ do
     do 
             # for interArrivalT in $(seq 1 5) 
             #for arrRate in 0.01 0.05 0.1 0.2 0.3 0.4 0.5 1 3 5 10 50   
-            #for arrRate in 0.01 0.02 0.03 0.04 0.05 0.1 0.5 1 5 10 
+            for arrRate in 0.01 0.02 0.03 0.04 0.05 0.1 0.5 1 5 10 
             #for arrRate in 0.01 0.02 0.03 0.04 0.05 0.1 0.5 1 5 10 
             # for j in 0.01 0.05 0.1 0.5 1 5 10 25 50 75 100 250 500 750 1000 
             # for j in 25 50 75 100 250 500 750 1000 
@@ -32,7 +32,7 @@ do
             # for alpha in 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 
             # for alpha in 0.8 0.85 0.9 0.95 0.99 0.999 1  
             #for wifi_mean_time_connected in 400 800 1200 1600 2000 
-            for wifi_mean_time_connected in 100 250 500 750 1000 2500 5000 7500 10000 
+            #for wifi_mean_time_connected in 100 250 500 750 1000 2500 5000 7500 10000 
             do 
                 # for i in $(seq 1 10) 
                 # do 
