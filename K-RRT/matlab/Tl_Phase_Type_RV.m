@@ -3,8 +3,10 @@ clear all
 %% Parameters
 k = 2; % #Zi due to array problem k cannot be assigned with high value may be we can swap k and ni eg., k=5 ni=3 we can use k=3 m=15 rather than k=5 m=15
 %m = 9; % size of alpha
-ni = [4 8 30];
-lambda = [5 7.5 10];
+ni = [3 6 75];
+lambda = [2.5 3.125 2.5];
+
+
 %ni = [8 5 5 3 5];
 %lambda = [25 10 10 10 15];
 
@@ -46,8 +48,8 @@ end
 
 %% Probability
 [m,n] = size(Si);
-tmin = 0;
-tmax = 2;
+tmin = 1;
+tmax = 5;
 step = 0.1;
 t = [tmin:step:tmax];
 

@@ -339,8 +339,8 @@ int main(int argc, char *argv[]) {
 	int N_AP = 5;
 	int K=5;
 	double packet_size = 2;
-	double volume = 100;
-	double b1 = 5;
+	double volume = 250;
+	double b1 = 20;
 	double b2[N_AP] = {0};
 	double tl[N_AP] = {0};
 	double ptime[N_AP] = {0};
@@ -348,16 +348,16 @@ int main(int argc, char *argv[]) {
 	int Ni[N_AP];
 	double LAMDAs[N_AP];
 
-	b2[0] = 5;
-	b2[1] = 10;
-	b2[2] = 30;
-	b2[3] = 10;
-	b2[4] = 15;
+	b2[0] = 40;
+	b2[1] = 50;
+	b2[2] = 40;
+	b2[3] = 60;
+	b2[4] = 60;
 
     Ni[0] = 2;
 	Ni[1] = 4;
-	Ni[2] = 10;
-	Ni[3] = 5;
+	Ni[2] = 5;
+	Ni[3] = 10;
 	Ni[4] = 15;
 
 	int be = 0;
@@ -369,8 +369,8 @@ int main(int argc, char *argv[]) {
 
 	for(int i=0;i<N_AP;i++)
 	{
-		be = b1 + b2[i];
-		ptime[i] = packet_size/be;
+		be = b2[i];
+		ptime[i] = (packet_size*8)/be;
 		//cout << "ptime"<<i<<"="<<ptime[i]<<endl;
 	}
 

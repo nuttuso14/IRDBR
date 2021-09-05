@@ -340,41 +340,41 @@ int main(int argc, char *argv[]) {
 	int K=3;
 	double packet_size = 2; //MB
 	double volume = 250;
-	double b1 = 5;
+	double b1 = 20;
 	double b2[N_AP] = {0};
 	double tl[N_AP] = {0};
     double price[N_AP] = {0};
     double off_fee[N_AP] = {0};
 	double ptime[N_AP] = {0};
-    double money = 350;
-    double t_D = 50;
+    double money = 120;
+    double t_D = 100;
     
     int Ni[N_AP];
 	double LAMDAs[N_AP];
 
-	b2[0] = 5;
-	b2[1] = 10;
-	b2[2] = 30;
-	b2[3] = 10;
-	b2[4] = 15;
+	b2[0] = 40;
+	b2[1] = 50;
+	b2[2] = 40;
+	b2[3] = 60;
+	b2[4] = 60;
 
     Ni[0] = 2;
 	Ni[1] = 4;
-	Ni[2] = 10;
-	Ni[3] = 5;
+	Ni[2] = 5;
+	Ni[3] = 10;
 	Ni[4] = 15;
 
-    price[0] = 0.5;
-	price[1] = 0.75;
-	price[2] = 1.25;
-	price[3] = 0.5;
-	price[4] = 1;
+    price[0] = 0.41;
+	price[1] = 0.22;
+	price[2] = 0.25;
+	price[3] = 0.14;
+	price[4] = 0.11;
 
 	int be = 0;
 	for(int i=0;i<N_AP;i++)
 	{
 		be = b1 + b2[i];
-		tl[i] = volume/be;
+		tl[i] = (volume*8)/be;
         off_fee[i] = price[i]*volume; 
         //cout << "tl"<<i<<"="<<tl[i]<<endl;
         //cout << "off_fee"<<i<<"="<<off_fee[i]<<endl;
@@ -400,8 +400,8 @@ int main(int argc, char *argv[]) {
 
     for(int i=0;i<j_ap.size();i++)
 	{
-		be = b1 + b2[j_ap[i]];
-		ptime[j_ap[i]] = packet_size/be;
+		be = b2[j_ap[i]];
+		ptime[j_ap[i]] = (packet_size*8)/be;
 		//cout << "ptime"<<j_ap[i]<<"="<<ptime[j_ap[i]]<<endl;
 	}
 

@@ -1,0 +1,22 @@
+Limit Download Speed policy
+Exclusive Banwidth Reward policy
+
+        \State
+        \State \{Distribute bandwidth \& Check Admission\}
+        \If{$S\geq w_g$}%guaranteed bw
+            \State Admission = True
+            \State Add $u_{j}$ to $U_{\tt BS}$
+            \State $b_1^{j}(t+1)=w_g$
+            \State $S=S-w_g$
+            \If{$u_{j}$ has WiFi connection}
+                \State \Call{SDBR\_BW\_Assignment}{$u_{j}$}
+            \EndIf
+        \ElsIf{($S>0$) and ($S<w_g$)}
+            \State Admission = True
+            \State Add $u_{j}$ to $U_{\tt BS}$
+            \State $b_1^{j}(t+1)=S$ 
+            \State $S=0$
+        %\ElsIf{$S==0$}
+         %   \State Admission = False
+          %  \State Block $u_{j}$
+        \EndIf

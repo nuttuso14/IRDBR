@@ -18,7 +18,7 @@
 #define EVENT_WIFI_UPDATE 4
 */
 
-#define ENB_TOTAL_BW 200
+#define ENB_TOTAL_BW 1000
 #define STA_SERVICE_T_INTERVAL 50
 
 #define FEATURE_WIFI true
@@ -27,8 +27,8 @@
 #define PROB_START_WITH_WIFI 0.685
 #define PROB_VIP_MEMBER 0.5
 
-#define P_MAX 1.0
-#define PARETO_SH 1.2
+#define P_MAX 1.8
+#define PARETO_SH 1.8
 #define N_WIFI_AP 5
 //#define MAX_NUM_UE_DEPARTURE 100000
 #define MAX_TIME_SIMULATION 3000000
@@ -306,7 +306,8 @@ int main(int argc, char** argv)
         cout << "================ IDBR ================" <<endl;
     }
 
-    p_mean_UE_bugget = 60;
+    p_mean_UE_bugget = 700;
+    cout << "For Uncertainty !" << endl;
     cout << "p_mean_UE_bugget:" << p_mean_UE_bugget <<endl;
 
     double pareto_l = p_mean_file_size*(PARETO_SH-1)/PARETO_SH;
@@ -352,13 +353,22 @@ int main(int argc, char** argv)
     {
         ww[5] = WiFi((i+1),ni[i],bw[i],r1_bw[i],r2_bw[i],r3_bw[i],wifi_mean_time_connected,t1_time[i],t2_time[i],t3_time[i],discount[i],price_ap[i]);
     }*/
-
-    ww[0] = WiFi(1,ni[0],40,10,45,60.5,wifi_mean_time_connected,50,50,50,0.5,0.41);
+    /* for uncertainty */
+    /*ww[0] = WiFi(1,ni[0],40,10,45,60.5,wifi_mean_time_connected,50,50,50,0.5,0.41);
     ww[1] = WiFi(2,ni[1],50,1,45,100,wifi_mean_time_connected,100,100,100,0.5,0.22);
     ww[2] = WiFi(3,ni[2],60,0.5,85,100,wifi_mean_time_connected,200,200,200,0.1,0.14);
     ww[3] = WiFi(4,ni[3],40,2.5,35,80,wifi_mean_time_connected,15,15,15,0.3,0.25);
     ww[4] = WiFi(5,ni[4],60,25,55,99,wifi_mean_time_connected,5,5,5,0.2,0.11);
-    ww[5] = WiFi(6,ni[5],5,0.5,6,8,wifi_mean_time_connected,500,500,500,0,0);
+    ww[5] = WiFi(6,ni[5],5,0.5,6,8,wifi_mean_time_connected,500,500,500,0,0);*/
+
+    /* for constant bandwidth */
+    ww[0] = WiFi(1,ni[0],40,40,40,40,wifi_mean_time_connected,50,50,50,0.5,0.41);
+    ww[1] = WiFi(2,ni[1],50,50,50,50,wifi_mean_time_connected,100,100,100,0.5,0.22);
+    ww[2] = WiFi(3,ni[2],60,60,60,60,wifi_mean_time_connected,200,200,200,0.1,0.14);
+    ww[3] = WiFi(4,ni[3],40,40,40,40,wifi_mean_time_connected,15,15,15,0.3,0.25);
+    ww[4] = WiFi(5,ni[4],60,60,60,60,wifi_mean_time_connected,5,5,5,0.2,0.11);
+    ww[5] = WiFi(6,ni[5],5,5,5,5,wifi_mean_time_connected,500,500,500,0,0);
+
 
     /*ww[0] = WiFi(1,2,40,10,45,60.5,wifi_mean_time_connected,30,30,30,0.5,0.02);
     ww[1] = WiFi(2,4,50,1,45,100,wifi_mean_time_connected,30,30,30,0.5,0.05);

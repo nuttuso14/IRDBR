@@ -1,11 +1,13 @@
-	b2[0] = 5;
-	b2[1] = 10;
-	b2[2] = 30;
-	b2[3] = 10;
-	b2[4] = 15;
 
-    Ni[0] = 2;
-	Ni[1] = 4;
-	Ni[2] = 10;
-	Ni[3] = 5;
-	Ni[4] = 15;
+
+	return pi;
+}
+
+int main(int argc, char *argv[]) {
+	
+	
+	int NSimulation = 100000;
+	int N_AP = 5;
+	int K=5;
+	double packet_size = 2;
+	double volu
