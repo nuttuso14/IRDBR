@@ -18,6 +18,11 @@
 #define EVENT_WIFI_UPDATE 4
 */
 
+//#define ENB_TOTAL_BW 50
+//#define ENB_TOTAL_BW 100
+//#define ENB_TOTAL_BW 200
+//#define ENB_TOTAL_BW 400
+//#define ENB_TOTAL_BW 800
 #define ENB_TOTAL_BW 1000
 #define STA_SERVICE_T_INTERVAL 50
 
@@ -27,7 +32,7 @@
 #define PROB_START_WITH_WIFI 0.685
 #define PROB_VIP_MEMBER 0.5
 
-#define P_MAX 1.8
+#define P_MAX 1
 #define PARETO_SH 1.8
 #define N_WIFI_AP 5
 //#define MAX_NUM_UE_DEPARTURE 100000
@@ -303,11 +308,11 @@ int main(int argc, char** argv)
 
     if(idbr)
     {
-        cout << "================ IDBR ================" <<endl;
+        cout << "================ IDBR for ICC2022 ================" <<endl;
     }
 
     p_mean_UE_bugget = 700;
-    cout << "For Uncertainty !" << endl;
+    //cout << "For Uncertainty !" << endl;
     cout << "p_mean_UE_bugget:" << p_mean_UE_bugget <<endl;
 
     double pareto_l = p_mean_file_size*(PARETO_SH-1)/PARETO_SH;
@@ -327,6 +332,7 @@ int main(int argc, char** argv)
     arr_num_drb_in_sys = new int[max_drb_served_by_enb+1]();
 
     device_min_distribute_bw = enb_total_bw/max_drb_served_by_enb;
+    cout << "wg="<<device_min_distribute_bw<<endl;
 
     enb.init(0, current_time, enb_mean_time_arrival, enb_total_bw, device_min_distribute_bw, 0);
     enb.current_time = current_time;
@@ -354,20 +360,43 @@ int main(int argc, char** argv)
         ww[5] = WiFi((i+1),ni[i],bw[i],r1_bw[i],r2_bw[i],r3_bw[i],wifi_mean_time_connected,t1_time[i],t2_time[i],t3_time[i],discount[i],price_ap[i]);
     }*/
     /* for uncertainty */
-    /*ww[0] = WiFi(1,ni[0],40,10,45,60.5,wifi_mean_time_connected,50,50,50,0.5,0.41);
+    cout << "======uncertainty bandwidth ======" <<endl; 
+    ww[0] = WiFi(1,ni[0],40,10,45,60.5,wifi_mean_time_connected,50,50,50,0.5,0.41);
     ww[1] = WiFi(2,ni[1],50,1,45,100,wifi_mean_time_connected,100,100,100,0.5,0.22);
     ww[2] = WiFi(3,ni[2],60,0.5,85,100,wifi_mean_time_connected,200,200,200,0.1,0.14);
     ww[3] = WiFi(4,ni[3],40,2.5,35,80,wifi_mean_time_connected,15,15,15,0.3,0.25);
     ww[4] = WiFi(5,ni[4],60,25,55,99,wifi_mean_time_connected,5,5,5,0.2,0.11);
-    ww[5] = WiFi(6,ni[5],5,0.5,6,8,wifi_mean_time_connected,500,500,500,0,0);*/
+    ww[5] = WiFi(6,ni[5],2.5,7.5,20,8,wifi_mean_time_connected,500,500,500,0,0);
 
     /* for constant bandwidth */
+/*     cout << "======constant bandwidth [No selection] ======" <<endl; 
+    ww[0] = WiFi(1,ni[0],50,50,50,50,wifi_mean_time_connected,50,50,50,0.5,0.41);
+    ww[1] = WiFi(2,ni[1],50,50,50,50,wifi_mean_time_connected,100,100,100,0.5,0.22);
+    ww[2] = WiFi(3,ni[2],50,50,50,50,wifi_mean_time_connected,200,200,200,0.1,0.14);
+    ww[3] = WiFi(4,ni[3],50,50,50,50,wifi_mean_time_connected,15,15,15,0.3,0.25);
+    ww[4] = WiFi(5,ni[4],50,50,50,50,wifi_mean_time_connected,5,5,5,0.2,0.11);
+    ww[5] = WiFi(6,ni[5],20,20,20,20,wifi_mean_time_connected,500,500,500,0,0);
+*/
+
+        /* for mutiple bandwidth [no selection] */
+    /*cout << "======No selection unceratianty ======" <<endl;
+    ww[0] = WiFi(1,ni[0],50,30,50,70,wifi_mean_time_connected,500,500,500,0.5,0.41);
+    ww[1] = WiFi(2,ni[1],50,30,50,70,wifi_mean_time_connected,500,500,500,0.5,0.22);
+    ww[2] = WiFi(3,ni[2],50,30,50,70,wifi_mean_time_connected,500,500,500,0.1,0.14);
+    ww[3] = WiFi(4,ni[3],50,30,50,70,wifi_mean_time_connected,500,500,500,0.3,0.25);
+    ww[4] = WiFi(5,ni[4],50,30,50,70,wifi_mean_time_connected,500,500,500,0.2,0.11);
+    ww[5] = WiFi(6,ni[5],50,30,50,70,wifi_mean_time_connected,500,500,500,0,0);*/
+
+    /* for CONSTANT  bandwidth [with selection] */
+    /*cout << "======No unceratianty [with selection]======" <<endl;
     ww[0] = WiFi(1,ni[0],40,40,40,40,wifi_mean_time_connected,50,50,50,0.5,0.41);
     ww[1] = WiFi(2,ni[1],50,50,50,50,wifi_mean_time_connected,100,100,100,0.5,0.22);
     ww[2] = WiFi(3,ni[2],60,60,60,60,wifi_mean_time_connected,200,200,200,0.1,0.14);
     ww[3] = WiFi(4,ni[3],40,40,40,40,wifi_mean_time_connected,15,15,15,0.3,0.25);
     ww[4] = WiFi(5,ni[4],60,60,60,60,wifi_mean_time_connected,5,5,5,0.2,0.11);
-    ww[5] = WiFi(6,ni[5],5,5,5,5,wifi_mean_time_connected,500,500,500,0,0);
+    ww[5] = WiFi(6,ni[5],10,10,10,10,wifi_mean_time_connected,500,500,500,0,0);*/
+
+
 
 
     /*ww[0] = WiFi(1,2,40,10,45,60.5,wifi_mean_time_connected,30,30,30,0.5,0.02);
@@ -713,8 +742,19 @@ int main(int argc, char** argv)
                             }
                             else
                             {
-                                double share_half = lte_bw_of_erased_drb/2;
-                                enb.bw_pool+=share_half;
+                                double share_half = 0;
+                                enb.bw_pool+=lte_bw_of_erased_drb;
+                                if(enb.bw_pool>(enb.min_guaranteed_bw))
+                                {
+                                    share_half = enb.min_guaranteed_bw;
+                                }
+                                else
+                                {
+                                   share_half = enb.bw_pool*0.25; 
+                                }
+                                enb.bw_pool-=share_half;
+                                //double share_half = lte_bw_of_erased_drb/2;
+                                //enb.bw_pool+=share_half;
 
                                 int n_vip=0;
                                 for(list<UE*>::iterator it=enb.drb_list.begin(); it!=enb.drb_list.end(); it++)
@@ -842,83 +882,90 @@ int main(int argc, char** argv)
 
                 if(algo==SDBR && idbr)
                 {
-                    double lte_bw_of_erased_drb = (*drbOverDeadline)->lte_bw;   
-                    (*drbOverDeadline)->lte_bw = 0;
-                    (*drbOverDeadline)->bandwidth-=lte_bw_of_erased_drb;
-                    enb.bw_pool += lte_bw_of_erased_drb;
+                    if((*drbOverDeadline)->lte_bw>=2)
+                    {
+                        double reward = 0;
+                        double limit_policy_bw = 0.5;
+                        double lte_bw_of_erased_drb = (*drbOverDeadline)->lte_bw;   
+                        (*drbOverDeadline)->lte_bw = limit_policy_bw;
+                        (*drbOverDeadline)->bandwidth-=limit_policy_bw;
+                        //enb.bw_pool += lte_bw_of_erased_drb;
+                        reward = lte_bw_of_erased_drb - limit_policy_bw; 
 
-                    int n_vip=0;
-                    for(list<UE*>::iterator it=enb.drb_list.begin(); it!=enb.drb_list.end(); it++)
-                    {
-                        if((*it)->vip_ue && (*it)->flag_deadline_miss!=true)
-                        {
-                            n_vip++;
-                        }
-                    }
-
-                    if(n_vip>0)
-                    {
-                        double avg_distribute = enb.bw_pool/n_vip;
-                        for(list<UE*>::iterator vip=enb.drb_list.begin(); vip!=enb.drb_list.end(); vip++)
-                        {
-                            if((*vip)->vip_ue && (*vip)->flag_deadline_miss!=true)
-                            {
-                                (*vip)->lte_bw+=avg_distribute;
-                                (*vip)->bandwidth+=avg_distribute;
-                            }
-                        }                        
-                    }
-                    else
-                    {
-                        int n_lack_bw = 0;
+                        int n_vip=0;
                         for(list<UE*>::iterator it=enb.drb_list.begin(); it!=enb.drb_list.end(); it++)
                         {
-                            if((*it)->lte_bw <=enb.min_guaranteed_bw*0.75 && (*it)->flag_deadline_miss!=true)
+                            if((*it)->vip_ue && (*it)->flag_deadline_miss!=true)
                             {
-                                n_lack_bw++;
+                                n_vip++;
                             }
                         }
 
-                        if(n_lack_bw>0)
+                        if(n_vip>0)
                         {
-                            double avg_distribute = enb.bw_pool/n_lack_bw;
+                            double avg_distribute = reward/n_vip;
+                            for(list<UE*>::iterator vip=enb.drb_list.begin(); vip!=enb.drb_list.end(); vip++)
+                            {
+                                if((*vip)->vip_ue && (*vip)->flag_deadline_miss!=true)
+                                {
+                                    (*vip)->lte_bw+=avg_distribute;
+                                    (*vip)->bandwidth+=avg_distribute;
+                                }
+                            }                        
+                        }
+                        else
+                        {
+                            int n_lack_bw = 0;
                             for(list<UE*>::iterator it=enb.drb_list.begin(); it!=enb.drb_list.end(); it++)
                             {
                                 if((*it)->lte_bw <=enb.min_guaranteed_bw*0.75 && (*it)->flag_deadline_miss!=true)
                                 {
-                                    (*it)->lte_bw+=avg_distribute;
-                                    (*it)->bandwidth+=avg_distribute;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            int n_no_miss=0;
-                            for(list<UE*>::iterator it=enb.drb_list.begin(); it!=enb.drb_list.end(); it++)
-                            {
-                                if((*it)->flag_deadline_miss!=true)
-                                {
-                                    n_no_miss++;
+                                    n_lack_bw++;
                                 }
                             }
 
-                            if(n_no_miss>0)
+                            if(n_lack_bw>0)
                             {
-                               double avg_distribute = enb.bw_pool/n_no_miss; 
+                                double avg_distribute = reward/n_lack_bw;
                                 for(list<UE*>::iterator it=enb.drb_list.begin(); it!=enb.drb_list.end(); it++)
                                 {
-                                    if((*it)->flag_deadline_miss!=true)
+                                    if((*it)->lte_bw <=enb.min_guaranteed_bw*0.75 && (*it)->flag_deadline_miss!=true)
                                     {
                                         (*it)->lte_bw+=avg_distribute;
                                         (*it)->bandwidth+=avg_distribute;
                                     }
-                                }                                
+                                }
                             }
-                        }
+                            else
+                            {
+                                int n_no_miss=0;
+                                for(list<UE*>::iterator it=enb.drb_list.begin(); it!=enb.drb_list.end(); it++)
+                                {
+                                    if((*it)->flag_deadline_miss!=true)
+                                    {
+                                        n_no_miss++;
+                                    }
+                                }
 
+                                if(n_no_miss>0)
+                                {
+                                double avg_distribute = reward/n_no_miss; 
+                                    for(list<UE*>::iterator it=enb.drb_list.begin(); it!=enb.drb_list.end(); it++)
+                                    {
+                                        if((*it)->flag_deadline_miss!=true)
+                                        {
+                                            (*it)->lte_bw+=avg_distribute;
+                                            (*it)->bandwidth+=avg_distribute;
+                                        }
+                                    }                                
+                                }
+                            }
+
+                        }
+                        //enb.bw_pool =0;
+                        enb.updateDrbDepartureTime();
                     }
-                    enb.bw_pool =0;
-                    enb.updateDrbDepartureTime();
+                    
                 }
 
                 /*if(idbr)
