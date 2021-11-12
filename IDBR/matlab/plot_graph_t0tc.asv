@@ -1,0 +1,184 @@
+X = [0.25	0.5	0.75	1	2	4	5];
+
+Mo_money_static = [4166500	4163380	4139730	4073280	4038360	3713690	3480630];
+Mo_money_dbr = [4227600	4085370	3969820.00	3966720	3957400	3491010	3471960];
+Mo_money_qedf = [3967310	3861220	3789630	3718120	3503980	3419870	3233920];
+Mo_money_qssf = [4079230	3926290	3825080	3637540	3527610	3379880	3373120];
+Mo_money_sdbr = [4212620	4137320	3664230	4106740	4011930	3732720	3401150];
+Mo_money_idbr = [4229000	4141430	4134430	4051350	3897360	3765830	3744700];
+
+
+i = i+1;
+figure(i)
+
+semilogx(X,Mo_money_static,'-*', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,Mo_money_dbr,'-s', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,Mo_money_qedf,'-d', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,Mo_money_qssf,'-p', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,Mo_money_sdbr,'-o', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,Mo_money_idbr,'-^', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+
+xlabel('E[T_0] (Unit: E[T_C])','FontSize', 14);
+ylabel('Mobile Operator Revenue ($)','FontSize', 15);
+
+xticklabels({'0.25','0.5','0.75','1','2','4','5'});
+set(gca, 'XTick', X);
+
+legend({'M-Offloading','DBR', 'QEDF', 'QSSF','SDBR','IDBR'},'NumColumns',1,'FontSize', 10);
+
+hold off;
+grid on;
+
+Mo_puser_static = [13.9924	13.9906	13.9161	13.6115	13.7298	12.8931	12.3926
+Mo_puser_dbr = [14.1366	13.4481	13.7936	13.4638	13.5138	12.502	13.2663
+Mo_puser_qedf = [13.0031	13.4731	13.2259	12.9307	12.5104	12.29	11.9263
+Mo_puser_qssf = [13.7409	13.4315	13.1745	12.8037	12.5666	12.222	12.1939
+14.0642	13.815	12.6369	13.7509	13.5175	12.8694	12.2547
+14.1012	13.8732	13.8553	13.5746	13.217	12.8373	12.8975
+
+
+182.22	154.029	131.838	118.252	79.4719	49.2145	42.7916];
+181.432	152.171	132.406	116.317	78.5075	48.802	41.2639];
+166.291	139.297	119.554	103.695	67.8025	41.9756	34.908];
+167.226	139.547	119.532	103.942	69.4115	41.1431	36.0755];
+156.832	129.409	109.439	96.2885	63.5735	39.394	31.7185];
+Mo_puser_idbr = [159.218	134.332	116.675	102.606	74.9594	51.2144	46.8047];
+
+
+i = i+1;
+figure(i)
+
+semilogx(X,Mo_puser_static,'-*', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,Mo_puser_dbr,'-s', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,Mo_puser_qedf,'-d', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,Mo_puser_qssf,'-p', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,Mo_puser_sdbr,'-o', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,Mo_puser_idbr,'-^', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+
+xlabel('E[T_0] (Unit: E[T_C])','FontSize', 14);
+ylabel('Average User Payment ($)','FontSize', 15);
+
+xticklabels({'0.25','0.5','0.75','1','2','4','5'});
+set(gca, 'XTick', X);
+
+legend({'M-Offloading','DBR', 'QEDF', 'QSSF','SDBR','IDBR'},'NumColumns',1,'FontSize', 10);
+
+hold off;
+grid on;
+
+blocking_static = [0.83981800	0.85439600	0.87040200	0.87577400	0.89542800	0.90396900	0.90660900];
+blocking_dbr = [0.83508600	0.85883400	0.867963	0.878185	0.892454	0.902965	0.906219];
+blocking_qedf = [0.832964	0.858950	0.869129	0.881857	0.896200	0.904277	0.905720];
+blocking_qssf = [0.839916	0.858659	0.868067	0.876901	0.893732	0.905065	0.910243];
+blocking_sdbr = [0.790599	0.819717	0.837748	8.51E-01	0.877072	0.893953	0.898064];
+blocking_idbr = [0.708404	0.730704	0.746087	0.764830	0.779282	0.799994	0.806064];
+
+i = i+1;
+figure(i)
+
+semilogx(X,blocking_static,'-*', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,blocking_dbr,'-s', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,blocking_qedf,'-d', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,blocking_qssf,'-p', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,blocking_sdbr,'-o', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,blocking_idbr,'-^', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+
+xlabel('E[T_0] (Unit: E[T_C])','FontSize', 14);
+ylabel('Blocking Probability','FontSize', 15);
+
+xticklabels({'0.25','0.5','0.75','1','2','4','5'});
+set(gca, 'XTick', X);
+
+legend({'M-Offloading','DBR', 'QEDF', 'QSSF','SDBR','IDBR'},'NumColumns',1,'FontSize', 10);
+
+hold off;
+grid on;
+
+i = i+1;
+figure(i)
+
+deadline_static = [0.224708	0.312451	0.380571	0.430395	0.564142	0.668309	0.694009];
+deadline_dbr = [0.205788	0.27262	0.330125	0.378256	0.509797	0.630164	0.664134];
+deadline_qedf = [0.18733	0.260223	0.320729	0.378687	0.522378	0.644406	0.667092];
+deadline_qssf = [0.189366	0.257504	0.31897	0.378272	0.515557	0.644655	0.667831];
+deadline_sdbr = [0.28237	0.391901	0.476069	0.538033	0.68076	0.788681	0.821741];
+deadline_idbr = [0.259302	0.347429	0.412326	0.463914	0.57087	0.665748	0.681418];
+
+semilogx(X,deadline_static,'-*', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,deadline_dbr,'-s', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,deadline_qedf,'-d', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,deadline_qssf,'-p', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,deadline_sdbr,'-o', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,deadline_idbr,'-^', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+
+xlabel('E[T_0] (Unit: E[T_C])','FontSize', 14);
+ylabel('P_{miss}','FontSize', 15);
+
+xticklabels({'0.25','0.5','0.75','1','2','4','5'});
+set(gca, 'XTick', X);
+
+legend({'M-Offloading','DBR', 'QEDF', 'QSSF','SDBR','IDBR'},'NumColumns',1,'FontSize', 10);
+
+hold off;
+grid on;
+
+i = i+1;
+figure(i)
+
+V0_static = [1.475378418	1.257312012	1.100535889	0.978845215	0.685072021	0.406396484	0.350718994];
+V0_dbr = [1.470056152	1.317358398	1.15713623	1.038187256	0.724476318	0.440189209	0.377258301];
+V0_qedf = [1.459350586	1.305053711	1.141643066	1.032866211	0.694632568	0.422298584	0.35993042];
+V0_qssf = [1.493786621	1.278845215	1.145234375	1.010489502	0.697414551	0.430227051	0.366877441];
+V0_sdbr = [1.823730469	1.666137695	1.507458496	1.377990723	1.03121582	0.674725342	0.587546387];
+V0_idbr = [1.99855957	1.858203125	1.722094727	1.636328125	1.315466309	1.050018311	0.966697998];
+
+
+semilogx(X,V0_static,'-*', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,V0_dbr,'-s', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,V0_qedf,'-d', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,V0_qssf,'-p', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,V0_sdbr,'-o', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+semilogx(X,V0_idbr,'-^', 'MarkerSize',9, 'LineWidth',1.1)
+hold on
+
+xlabel('E[T_0] (Unit: E[T_C])','FontSize', 14);
+ylabel('Average Offloading Volume (MB)','FontSize', 15);
+
+xticklabels({'0.25','0.5','0.75','1','2','4','5'});
+set(gca, 'XTick', X);
+
+legend({'M-Offloading','DBR', 'QEDF', 'QSSF','SDBR','IDBR'},'NumColumns',1,'FontSize', 10);
+
+hold off;
+grid on;
+
+ 

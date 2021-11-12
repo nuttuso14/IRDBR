@@ -3,10 +3,10 @@ cat /dev/null > result.txt
 arrRate=0.1  
 mean_service_t=1500  
 max_drb_served_enb=10  
-wifi_bw=60  
+wifi_bw=25  
 wifi_mean_time_connected=1679  
 wifi_mean_time_disconnected=439  
-deadline=120 
+deadline=25 
 Ps=0.9  
 idbr=0 
 alpha=0.5  
