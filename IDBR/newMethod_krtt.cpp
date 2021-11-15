@@ -300,8 +300,10 @@ int main(int argc, char** argv)
     Ps = strtod(argv[9],NULL);
     satisfaction_b = strtod(argv[10],NULL);
     p_mean_file_size = strtod(argv[11],NULL);  // Unit is MB
+
     sdbr_r = 0;
     idbr = atoi(argv[12]);
+    enb_total_bw = atoi(argv[13]); 
 
 
     lambda0 = 1/wifi_mean_time_disconnected;
@@ -332,6 +334,7 @@ int main(int argc, char** argv)
     arr_num_drb_in_sys = new int[max_drb_served_by_enb+1]();
 
     device_min_distribute_bw = enb_total_bw/max_drb_served_by_enb;
+    cout << "======= add one more command"<<endl;
     cout << "wg="<<device_min_distribute_bw<<endl;
 
     enb.init(0, current_time, enb_mean_time_arrival, enb_total_bw, device_min_distribute_bw, 0);
