@@ -1,0 +1,138 @@
+\subsection{Effect of Average WiFi Connection Time, $E[T_C]$}
+
+\begin{figure}[!ht]
+    \centering
+    \subfloat[Overall revenue of mobile operator.]{%
+        \includegraphics[width=0.49\textwidth]{image/result/performance_eva/etC_small_mobileIncome.eps}
+         \label{timebased-ETC_Operator}
+     }
+     \centering
+    \subfloat[Average user expense.]{
+        \includegraphics[width=0.49\textwidth]{image/result/performance_eva/etC_small_avgmoney.eps}
+         \label{timebased-ETC_Payment}
+    }
+    \hfill
+    \subfloat[Blocking probability.]{
+        \includegraphics[width=0.49\textwidth]{image/result/performance_eva/etC_small_blocking.eps}
+         \label{timebased-ETC_Block}
+    }
+    \caption{The monetary outputs and Blocking probability against the change of the average WiFi connection time, $E[T_C]$, in a time-based file downloading scenario.}
+    \label{timebased-ETC_money}
+\end{figure}
+
+\subsubsection{The monetary and blocking probability performance metrics comparison}
+
+Referring to Fig. \ref{timebased-ETC_Operator}, when the average WiFi connection time, $E[T_C]$,is extended, every scheme can gain higher revenues than those with lower values of $E[T_C]$ since they can take an advantage of offloading via a WiFi path to increase download speeds for every users. However, because the QEDF and QSSF methods consider to allocate additional cellular bandwidth to QoS-unsatisfied users only, so a few new users are accepted to join the services. As a result, both methods obtain the lower operator incomes than those under the other four schemes in spite of maximizing WiFi connection period. Meanwhile, the IDBR can accept more people than the other fix schemes and VIP users can finish activities very early. Accordingly, it achieves the highest revenue of the six methods. Although the SDBR can also accept a number of users exceeding $N_{\tt max}$, for time-based case, the additional number of users is so minor that the revenue calculation does not receive an effect. Consequently, the DBR achieves the second highest revenue followed by that under the SDBR. For example, the overall revenues under the IDBR, DBR, SDBR, QSSF, and QSEDF for $E[T_C]=10000$ s are \$4.23 M, \$4.17 M, \$4.16 M, \$4.15 M, and \$4.13 M, respectively.
+
+As shown in Fig. \ref{timebased-ETC_Payment}, because the mobile operator incomes under the QEDF and QSSF are lower than those under the other four schemes. Hence, the average users payments under both schemes are also not as high as those under the other schemes. Meanwhile, the number of users exceeding $N_{\tt max}$ in SDBR and IDBR is not as large that the calculation of average payment has an impact. As a result, the average payment under the IDBR is higher than those under the other five schemes as WiFi connection time increases. For example, the average payments under IDBR, SDBR, QEDF and QSSF are \$14.14, \$13.98, \$13.97, \$13.94 ,respectively.
+
+Although the IDBR and SDBR do not attain the goal for achieving the lowest average user payments as $E[T_C]$ increases, the results in Fig. \ref{timebased-ETC_Block} show that they are all successful for reducing the blocking probability values. This means that they can accommodate a greater number of users than those in the other four schemes since more WiFi bandwidth can make the BS reclaim more cellular bandwidth to allocate to hungry-cellular-bandwidth users and new-arriving users. For all values of $E[T_C]$, the IDBR achieves the lowest blocking probability values of the six schemes followed by those under the  SDBR. Because the QEDF and QSSF allocate the reclaimed bandwidth to only users with QoS-priority, a few waiting users are accepted to the systems. As a result, their values of blocking probability are lower than those of the other four schemes. For example, the blocking probability values under IDBR, SDBR, QEDF, and QSSF for the value of $E[T_C]=10000$ s are 0.27\%, 0.26\%, 0.79\%, and 1.04\%, respectively. 
+
+
+\begin{figure}[!ht]
+    \centering
+    \subfloat[Deadline Miss ratio.]{%
+        \includegraphics[width=0.49\textwidth]{image/result/performance_eva/etC_small_Pmiss.eps}
+         \label{timebased-ETC_deadline}
+     }
+     \centering
+    \subfloat[Average Offloading Volume.]{
+        \includegraphics[width=0.49\textwidth]{image/result/performance_eva/etC_small_ev0.eps}
+         \label{timebased-ETC_offload}
+    }
+    %\hfill
+    %\subfloat[Average Download Volume.]{
+    %    \includegraphics[width=0.49\textwidth]{image/result/performance_eva/etC_small_evD.eps}
+    %     \label{timebased-ETC_download}
+    %}
+    \caption{The QoS performances against the change of the average WiFi connection time, $E[T_C]$, in a time-based file downloading scenario.}
+    \label{timebased-ETC_Qos}
+\end{figure}
+
+\subsubsection{The QoS metric comparison}
+As shown in Fig. \ref{timebased-ETC_deadline}, increasing $E[T_C]$ results in performing the activities via a WiFi path longer. As a result, the $P_{\tt miss}$ values of the six schemes decrease continuously in all cases of $E[T_C]$ values. The QEDF and QSSF achieve the lowest miss ratio values of the six schemes for all values of $E[T_C]$ since they can take advantage of limiting a number of users and extending period of WiFi connection to support almost all users in the systems to complete the offloading tasks on time. For example, the values of deadline miss ratio under the QEDF and QSSF at the final value of $E[T_C]$ are approximately 1.17\% and 1.25\%, respectively. In SDBR and IDBR, a greater number of users in the systems generally results in traffic congestion in both cellular and WiFi networks than those in the other schemes supporting only $N_{\tt max}$ users. Accordingly, the SDBR achieves the highest miss ratio value of the six schemes for almost all values of $E[T_C]$ except the first value of $E[T_C]$. However, since a file size in the time-based case is tiny and the IDBR can reduce the download times of VIP members to increase the cellular bandwidth in the sharing pool, it can maintain the QoS level. As a result, the miss ratio values under the IDBR is obviously lower than those under SDBR for all values of $E[T_C]$. For example, the $P_{\tt miss}$ values undr the SDBR and IDBR for $E[T_C] = 10000$ s are 2.35\%	and 2.08\%, respectively. 
+
+The results in both Figs \ref{timebased-ETC_offload} and \ref{timebased-ETC_download} show that a decrease in the value of $P_{\tt miss}$ results in larger offloading and download volumes for the six schemes. Although the IDBR has lower values of miss ratio than M-offloading, DBR and SDBR, it has the lowest offloading and download volumes of the six schemes due to the far higher number of users than those in the other five schemes. Meanwhile, the SDBR also accept a higher number of users than $N_{\tt max}$ but not as many as those in IDBR, so it can handle cellular traffic and achieves the highest offloading and download volumes of the six methods as $E[T_0]$ increases. For example, the average offloading volume and download volume under the IDBR for $E[T_C]=10000$ s are 36.03 MB and 225.29 MB, respectively. Meanwhile, those under the SDBR are 45.37 MB and 255.99 MB, respectively.  
+
+
+
+\subsection{Effect of Average WiFi Connection Time, $E[T_C]$}
+
+\begin{figure}[!ht]
+    \centering
+    \subfloat[Overall revenue of mobile operator.]{%
+        \includegraphics[width=0.49\textwidth]{image/result/performance_eva/etC_large_mobileIncome.eps}
+         \label{volumBased_ETC_Operator}
+     }
+     \centering
+    \subfloat[Average user expense.]{
+        \includegraphics[width=0.49\textwidth]{image/result/performance_eva/etC_large_avgmoney.eps}
+         \label{volumBased_ETC_Payment}
+    }
+    \hfill
+    \subfloat[Blocking probability.]{
+        \includegraphics[width=0.49\textwidth]{image/result/performance_eva/etC_large_blocking.eps}
+         \label{volumBased_ETC_Block}
+    }
+    \caption{The monetary outputs and Blocking probability against the change of the average WiFi connection time, $E[T_C]$, in a volume-based file downloading scenario.}
+    \label{volumBased_ETC_money}
+\end{figure}
+
+\subsubsection{The monetary and blocking probability performance metrics comparison}
+
+Referring to Fig. \ref{volumBased_ETC_Operator}, increasing $E[T_C]$ is to assist to every scheme to more often use WiFi paths for offloading activities. When the WiFi path is more frequently available, the IDBR and SDBR has higher cellular bandwidth in the sharing pool to allocate to hungry-bandwidth and new-arriving users. Hence, the mobile operator values under both schemes are higher than those earned by the other four schemes. However, those of the IDBR is significantly higher than those of SDBR because the IDBR can reduce the download times of some users in the system. For example, the revenue of the IDBR increases from \$2.5 M for $E[T_C]=100$ s to \$15.5 M for $E[T_C]=10000$ s, while that of SDBR increases form \$1.8 M to \$10.4 M. Meanwhile. those of the other four schemes at the final value of $E[T_C]$ are approximately 9.68 M.  
+
+As shown in Fig. \ref{volumBased_ETC_Payment}, since the mobile operator revenues of the SDBR are not as high as those of the IDBR and so does the number of the total users in SDBR. Therefore, the SDBR achieves the lowest average user payment of the six methods, followed by the payment of IDBR, for all values of $E[T_C]$. Meanwhile, the other four schemes have higher payments than those of IDBR and SDBR. This means that the service fees in the four schemes are so pricey. For example, the values of offloading price per user under the SDBR and IDBR at the final value of $E[T_C]$ are \$187.21 and \$190.09, respectively. Meanwhile those of the other four schemes are all higher than \$195. 
+
+The results in Fig. \ref{volumBased_ETC_Block} show that when WiFi connection time is extended, the six scheme can make a user of the WiFi path to reduce the traffic density of the cellular network. As a result, there is a decrease in the values of the blocking probability under the six schemes. Because the IDBR can accept more users as $E[T_C]$ increase and so does SDBR, their values of the blocking probability are always not as high as those of the other four schemes. Also, the number of users in the IDBR are higher than those in the SDBR. AS a  result, there is the most rapidest decrease in the IDBR compared to the other five schemes. For example, the values of blocking probability under the IDBR drop by 15.22\% from 88.08\% for $E[T_C]=100$ s to 72.86\% for $E[T_C]=10000$ s. Meanwhile, those under SDBR drop by 5.6\% from 87.12\% to 81.52\%.    
+
+\begin{figure}[!ht]
+    \centering
+    \subfloat[Deadline Miss ratio.]{%
+        \includegraphics[width=0.49\textwidth]{image/result/performance_eva/etC_large_Pmiss.eps}
+         \label{volumBased_ETC_pmiss}
+     }
+     \centering
+    \subfloat[Average Offloading Volume.]{
+        \includegraphics[width=0.49\textwidth]{image/result/performance_eva/etC_large_ev0.eps}
+         \label{volumBased_ETC_offload}
+    }
+    %\hfill
+    %\subfloat[Average Download Volume.]{
+    %    \includegraphics[width=0.49\textwidth]{image/result/performance_eva/etC_large_evD.eps}
+    %     \label{volumBased_ETC_download}
+    %}
+    \caption{The QoS performances against the change of the average WiFi connection time, $E[T_C]$, in a volume-based file downloading scenario.}
+    \label{volumBased_ETC_Qos}
+\end{figure}
+
+\subsubsection{The QoS metric comparison}
+
+As shown in Fig. \ref{volumBased_ETC_pmiss}, the SDBR and IDBR accommodate higher number of users than those in the other four schemes, so the situation that both schemes face late offloading completion is higher possible than that occurring to the other four schemes. As a result, the SDBR achieves the highest miss ratio value of the six methods in all cases of $E[T_C]$ values, The value of miss ratio under the IDBR accounts for the second highest since it can control the QoS levels of VIP users. Meanwhile, the $P_{\tt miss}$ values of the QEDF and QSSF are always lower than those of the other four schemes with an increment of $E[T_C]$ since they take advantage of higher cellular bandwidth in the sharing pool to distribute to users with QoS-priority. For example, the $P_{\tt miss}$ values under SDBR, IDBR, and QSSF for $E[T_C]=500$ s are 43.9\%, 36.2\%, 28.1\%, respectively and those for  $E[T_C]=10000$ s are 20.2\%, 18.7\%, and 15.8\%, respectively. 
+
+The results in Figs. \ref{volumBased_ETC_offload} and \ref{volumBased_ETC_download} show that WiFi offloading is more frequently used as the WiFi connection time increases, so there is an increase in the average offloading volumes of the six schemes. The IDBR can make a use of policies for reducing downloading times of some users and disabling reclaiming bandwidth from users with late completion time to maintain the QoS, while the SDBR does not use such policies. Therefore, the offloading volumes of the IDBR are significantly higher than those of the other five schemes. However, since the total number of users in the IDBR are far greater than those in the other schemes and accordingly the cellular bandwidths of the IDBR is heavily distributed to more users than those of the other schemes. As a result, the average download volumes of the IDBR are lower than those of the other six schemes for all values of $E[T_C]$. For example, the average offloading volumes of the IDBR, SDBR, and the other four schemes for $E[T_C]=10000$ s are 2.17 GB, 1.69 GB, and 1.45 GB, respectively. Meanwhile, the download volumes of the same methods for $E[T_C]=10000$ s are 3.02 GB, 3.10 GB, and 3.04 GB, respectively. 
+
+\section{Monetary Computation against pricing factors} \label{subsec_6_money_factor}
+This section compares the results for computing the mobile operator revenues and average user payments obtained from the proposed IDBR with those obtained from the SDBR under the different pricing conditions, namely the average user budget $E[B_{\tt UE}]$ and the ratio of $z_{\tt vip}$. the parameter $E[B_{\tt UE}]$ is the user monetary resource to investigate the most suitable WiFi AP for performing offloading processes, while that of $z_{\tt vip}$ is the random variable for generating a VIP user (see Eq. (\ref{eq_Z_VIP})). For example, in a case where $z_{\tt vip}=0.5$, 50\% of the number of users in the IDBR will be classified as VIP members to receive the first priority for getting additional cellular bandwidth and reducing the reallocation rate $\beta$. To perform the monetary computation of the mobile operator and users, the offloading process is conducted in a volume-based scenario, since the IDBR can show the outstanding performance in this case. The monetary results are all compared against the change of $\lambda_{\mu}$ values.
+
+\subsection{Effect of the average user budget, $E[B_{\tt UE}]$}
+
+\begin{figure}[!ht]
+    \subfloat[Overall revenue of mobile operator.]{%
+        \includegraphics[width=0.49\textwidth]{image/result/performance_eva/arr_large_operator_BUE.eps}
+        \label{arr_BUE_Operator}
+     }
+     \centering
+    \subfloat[Average user expense.]{
+        \includegraphics[width=0.49\textwidth]{image/result/performance_eva/arr_large_payment_BUE.eps}
+        \label{arr_BUE_Payment}
+    }
+    \caption{Impact of the average user budget, $E[B_{\tt UE}]$.}
+    \label{arr_BUE_money}
+\end{figure}
+
+Fig. \ref{arr_BUE_money} compares the results of monetary calculation  obtained by the IDBR in a volume-based case with those obtained by the SDBR for different values of the average user budgets against the change of the $\lambda_{\mu}$ values. 
+
+As shown in Fig. \ref{arr_BUE_Operator}, when most of users have a bugget of \$350, they generally cannot pay offloading costs determined by the WiFi APs with less traffic density. For example, Offloading costs of WiFi AP $1\thicksim4$ with data volume of 3 GB are \$1260, \$675, \$430,and \$760, respectively. Therefore, the most frequently selected AP is WiFi AP $5$ in which offloading  cost is \$338. As a result, the data traffic is congest at WiFi AP $5$ and the operator revenues of the SDBR and IDBR for $E[B_{\tt UE}]=\$300$ are all lower than those for higher values of $E[B_{\tt UE}]=\$300$. For example, the revenues of the IDBR for $\lambda_{\mu}=10$ and $E[B_{\tt UE}]=\$350$ are around \$3.8M greater than those of SDBR, namely \$7.01 M and \$3.2M, respectively.  Meanwhile, those of the two schemes for higher values of $E[B_{\tt UE}]$ are not lower than \$8 M at the final value of $\lambda_{\mu}$. Users with the average budgets of $E[B_{\tt UE}]=\$700$ can choose more variety of WiFi APs for performing the offloading processes than those with $E[B_{\tt UE}]=\$350$, namely WiFi APs 2,3, and 5. Therefore, many WiFi APs are utilized, so the revenues of the IDBR for this value of $E[B_{\tt UE}]$ increase rapidly. For $E[B_{\tt UE}]=\$1400$, the monetary resource of users is abundant to choose all WiFi APs $1\thicksim5$. Therefore, the revenues of the IDBR for this value of budget increase sharply and is significantly higher than those of the SDBR. For example, the revenues of the IDBR for $E[B_{\tt UE}]=\$700$ increase from \$7.61 M for $\lambda_{\mu}=0.01$  to \$19.3 M for $\lambda_{\mu}=10$, while those of the IDBR for $E[B_{\tt UE}]=\$1400$ increase from \$12 M to \$25.7 M. In SDBR, those for $E[B_{\tt UE}]=\$700$ and $\$1400$ at the final value of $\lambda_{\mu}$ are \$85.6 M and \$12.3 M, respectively.  
+
+Referring to Fig. \ref{arr_BUE_Payment}, when $E[B_{\tt UE}=350$, users has so many choices to choose the best WiFi AP, the operator cannot gain much incomes in this case. As a result, the average users payments of both SDBR and IDBR are almost identical for all values of $\lambda_{\mu}$. For example, the average payment values of the IDBR for $E[B_{\tt UE}=350$ increases from \$399.5 tp \$196.31 while those of the SDBR increases from \$402.11 to \$208.53. For higher values of $E[B_{\tt UE}$, users can select various performances of WiFi APs and the IDBR and SDBR can accommodate more users when $\lambda_{\mu}$ increases. As a result, the average payments increase as $E[B_{\tt UE}$ increases and those of the IDBR for each value of $E[B_{\tt UE}$ are lower than those of SDBR since the IDBR can maximize the cellular and WiFi resources to reduce download times of users and accept higher number of users tha $N_{\tt max}$, while the IDBR use their resources only to accept higher users than $N_{\tt max}$ and hence the IDBR has more users than those in the SDBR. For example, the average payments of the IDBR and SDBR for $E[B_{\tt UE}]=\$700$ at the final value of $\lambda_{\mu}$ are \$150.72 and \$154.24, respectively. Meanwhile, those for $E[B_{\tt UE}]=\$1400$ are \$196.31 and \$208.53, respectively.

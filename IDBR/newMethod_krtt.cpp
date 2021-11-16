@@ -20,10 +20,10 @@
 
 //#define ENB_TOTAL_BW 50
 //#define ENB_TOTAL_BW 100
-//#define ENB_TOTAL_BW 200
+#define ENB_TOTAL_BW 200
 //#define ENB_TOTAL_BW 400
 //#define ENB_TOTAL_BW 800
-#define ENB_TOTAL_BW 1000
+//#define ENB_TOTAL_BW 1000
 #define STA_SERVICE_T_INTERVAL 50
 
 #define FEATURE_WIFI true
@@ -258,6 +258,8 @@ double device_min_distribute_bw;
 
 double p_max = P_MAX;
 
+double pareto_value;
+
 //prototype
 void addNewDrbToENB(double);
 void creatEvent(int, int, double);
@@ -303,8 +305,9 @@ int main(int argc, char** argv)
 
     sdbr_r = 0;
     idbr = atoi(argv[12]);
-    enb_total_bw = atoi(argv[13]); 
-
+    //enb_total_bw = atoi(argv[13]); 
+    pareto_value = strtod(argv[13],NULL); 
+    cout << "pareto_value =" << pareto_value <<endl;
 
     lambda0 = 1/wifi_mean_time_disconnected;
 
@@ -313,16 +316,24 @@ int main(int argc, char** argv)
         cout << "================ IDBR for ICC2022 ================" <<endl;
     }
 
-    p_mean_UE_bugget = 700;
+    p_mean_UE_bugget = strtod(argv[14],NULL); 
     //cout << "For Uncertainty !" << endl;
     cout << "p_mean_UE_bugget:" << p_mean_UE_bugget <<endl;
 
-    double pareto_l = p_mean_file_size*(PARETO_SH-1)/PARETO_SH;
+    /*double pareto_l = p_mean_file_size*(PARETO_SH-1)/PARETO_SH;
     rnd_file_size.SetShape(PARETO_SH);
     rnd_file_size.SetLocation(pareto_l);
 
     double pareto_2 = p_mean_UE_bugget*(PARETO_SH-1)/PARETO_SH;
     UE_bugget.SetShape(PARETO_SH);
+    UE_bugget.SetLocation(pareto_2);*/
+
+    double pareto_l = p_mean_file_size*(pareto_value-1)/pareto_value;
+    rnd_file_size.SetShape(pareto_value);
+    rnd_file_size.SetLocation(pareto_l);
+
+    double pareto_2 = p_mean_UE_bugget*(pareto_value-1)/pareto_value;
+    UE_bugget.SetShape(pareto_value);
     UE_bugget.SetLocation(pareto_2);
 
     e_list = new E_List;
@@ -334,7 +345,7 @@ int main(int argc, char** argv)
     arr_num_drb_in_sys = new int[max_drb_served_by_enb+1]();
 
     device_min_distribute_bw = enb_total_bw/max_drb_served_by_enb;
-    cout << "======= add one more command"<<endl;
+    cout << "======= add two more commands"<<endl;
     cout << "wg="<<device_min_distribute_bw<<endl;
 
     enb.init(0, current_time, enb_mean_time_arrival, enb_total_bw, device_min_distribute_bw, 0);
@@ -1346,6 +1357,8 @@ int main(int argc, char** argv)
 
     cout<<"num of simulate user: "<<count_drb_finished<<endl
         <<"num of user before deadline: "<<count_drb_finished_by_deadline<<endl
+        <<"num of fall drb: "<<enb.count_fall_drb<<endl
+        <<"num of total drb: "<<enb.count_total_drb_arrival<<endl
         <<"DRB blocking prob: "<< o_blocking_prob <<endl
         <<"Mean bw: "<<o_mean_bandwidth<<endl
         <<"Mean wifi bw: "<<o_mean_wifi_bandwidth<<endl
@@ -1511,6 +1524,7 @@ void addNewDrbToENB(double lte_bw){
     double file_MB_size = rnd_file_size++;
     double file_size = 8*file_MB_size;//file size unit is Mb
     double ue_money = UE_bugget++;
+    //cout << "file_MB_size=" << file_MB_size << ", ue_money=" <<ue_money <<endl;
     newDrb->orig_file_size = file_size;
     newDrb->remain_file_size = file_size;
     newDrb->current_time = current_time;
