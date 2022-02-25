@@ -15,10 +15,10 @@ semilogx(X,Mo_money_static,'-*', 'MarkerSize',9, 'LineWidth',1.1)
 hold on
 semilogx(X,Mo_money_dbr,'-s', 'MarkerSize',9, 'LineWidth',1.1)
 hold on
-semilogx(X,Mo_money_qedf,'-d', 'MarkerSize',9, 'LineWidth',1.1)
-hold on
-semilogx(X,Mo_money_qssf,'-p', 'MarkerSize',9, 'LineWidth',1.1)
-hold on
+%semilogx(X,Mo_money_qedf,'-d', 'MarkerSize',9, 'LineWidth',1.1)
+%hold on
+%semilogx(X,Mo_money_qssf,'-p', 'MarkerSize',9, 'LineWidth',1.1)
+%hold on
 semilogx(X,Mo_money_sdbr,'-o', 'MarkerSize',9, 'LineWidth',1.1)
 hold on
 semilogx(X,Mo_money_idbr,'-^', 'MarkerSize',9, 'LineWidth',1.1)
@@ -32,7 +32,8 @@ xticklabels({'50','150','300','600','800','1000','1200','1800'});
 
 set(gca, 'XTick', X);
 
-legend({'M-Offloading','DBR', 'QEDF', 'QSSF','SDBR','IDBR'},'NumColumns',1,'FontSize', 10);
+%legend({'M-Offloading','DBR', 'QEDF', 'QSSF','SDBR','IDBR'},'NumColumns',1,'FontSize', 10);
+legend({'Static','DBR','SDBR','IDBR'},'NumColumns',1,'FontSize', 10);
 
 hold off;
 grid on;
@@ -51,10 +52,10 @@ semilogx(X,Mo_puser_static,'-*', 'MarkerSize',9, 'LineWidth',1.1)
 hold on
 semilogx(X,Mo_puser_dbr,'-s', 'MarkerSize',9, 'LineWidth',1.1)
 hold on
-semilogx(X,Mo_puser_qedf,'-d', 'MarkerSize',9, 'LineWidth',1.1)
-hold on
-semilogx(X,Mo_puser_qssf,'-p', 'MarkerSize',9, 'LineWidth',1.1)
-hold on
+%semilogx(X,Mo_puser_qedf,'-d', 'MarkerSize',9, 'LineWidth',1.1)
+%hold on
+%semilogx(X,Mo_puser_qssf,'-p', 'MarkerSize',9, 'LineWidth',1.1)
+%hold on
 semilogx(X,Mo_puser_sdbr,'-o', 'MarkerSize',9, 'LineWidth',1.1)
 hold on
 semilogx(X,Mo_puser_idbr,'-^', 'MarkerSize',9, 'LineWidth',1.1)
@@ -67,7 +68,7 @@ ylabel('Average User Payment ($)','FontSize', 15);
 xticklabels({'50','150','300','600','800','1000','1200','1800'});
 set(gca, 'XTick', X);
 
-legend({'M-Offloading','DBR', 'QEDF', 'QSSF','SDBR','IDBR'},'NumColumns',1,'FontSize', 10);
+legend({'Static','DBR','SDBR','IDBR'},'NumColumns',1,'FontSize', 10);
 
 hold off;
 grid on;
@@ -86,10 +87,10 @@ semilogx(X,blocking_static,'-*', 'MarkerSize',9, 'LineWidth',1.1)
 hold on
 semilogx(X,blocking_dbr,'-s', 'MarkerSize',9, 'LineWidth',1.1)
 hold on
-semilogx(X,blocking_qedf,'-d', 'MarkerSize',9, 'LineWidth',1.1)
-hold on
-semilogx(X,blocking_qssf,'-p', 'MarkerSize',9, 'LineWidth',1.1)
-hold on
+%semilogx(X,blocking_qedf,'-d', 'MarkerSize',9, 'LineWidth',1.1)
+%hold on
+%semilogx(X,blocking_qssf,'-p', 'MarkerSize',9, 'LineWidth',1.1)
+%hold on
 semilogx(X,blocking_sdbr,'-o', 'MarkerSize',9, 'LineWidth',1.1)
 hold on
 semilogx(X,blocking_idbr,'-^', 'MarkerSize',9, 'LineWidth',1.1)
@@ -102,7 +103,8 @@ ylabel('Blocking Probability','FontSize', 15);
 xticklabels({'50','150','300','600','800','1000','1200','1800'});
 set(gca, 'XTick', X);
 
-legend({'M-Offloading','DBR', 'QEDF', 'QSSF','SDBR','IDBR'},'NumColumns',1,'FontSize', 10);
+%legend({'M-Offloading','DBR', 'QEDF', 'QSSF','SDBR','IDBR'},'NumColumns',1,'FontSize', 10);
+legend({'Static','DBR','SDBR','IDBR'},'NumColumns',1,'FontSize', 10);
 
 hold off;
 grid on;

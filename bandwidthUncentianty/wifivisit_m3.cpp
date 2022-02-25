@@ -337,18 +337,39 @@ int getWifiStatus(double p[],int size){
 int main(int argc, char *argv[]) 
 {
     int Nsim = 1000000;
-    double ets = 300;
-    double et0 = 50;
-    double etw = 100;
-    double et1 = 50;
-    double et2 = 80;
-    double et3 = 100;
+    double ets = 600;
+    double et0 = 100;
+    double etw = 500;
+    double et1 = 80;
+    double et2 = 120;
+    double et3 = 300;
 
     map<int, double> countP; 
     map<int, double> countP2; 
     map<int, double> countP3; 
     MarkovProcess mv (ets,et0,etw,et1,et2,et3);
+        cout << "P01=" << mv.getP01()<<endl;
+        cout << "P02=" << mv.getP02() <<endl;
+        cout << "P03=" << mv.getP03() <<endl;
+        cout << "P0T=" << mv.getP0T() <<endl;
+        
+                
+        cout << "P10=" << mv.getP10()<<endl;
+        cout << "P12=" << mv.getP12()<<endl;
+        cout << "P13=" << mv.getP13()<<endl;
+        cout << "P1T=" << mv.getP1T()<<endl;
+                
+        
+        cout << "P20=" << mv.getP20()<<endl;
+        cout << "P21=" << mv.getP21()<<endl;
+        cout << "P23=" << mv.getP23()<<endl;
+        cout << "P2T=" << mv.getP2T()<<endl;
 
+        cout << "P30=" << mv.getP30()<<endl;
+        cout << "P31=" << mv.getP31()<<endl;
+        cout << "P32=" << mv.getP32()<<endl;
+        cout << "P3T=" << mv.getP3T()<<endl;
+        
     // ******** Simulation ********
     double plist[4] = {0};
     double WiFiStatus = -1,chageStatus=-1;
@@ -365,6 +386,7 @@ int main(int argc, char *argv[])
         countR3 = 0;
         //cout << " S"<<WiFiStatus;
         //cout << "WiFiStatus : " << WiFiStatus << endl;
+
         do
         {
             if(WiFiStatus==0)

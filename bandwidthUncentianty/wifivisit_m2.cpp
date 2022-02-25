@@ -269,7 +269,21 @@ int main(int argc, char *argv[])
     //cout << "P0=" << plist[0] <<endl;
     //cout << "P1=" << plist[1] <<endl;
     //cout << "P2=" << plist[2] <<endl;
-
+     
+                cout << "P01=" << mv.getP01()<<endl;
+                cout << "P02=" << mv.getP02() <<endl;
+                cout << "P0T=" << mv.getP0T() <<endl;
+                
+                     
+                cout << "P10=" << mv.getP10()<<endl;
+                cout << "P12=" << mv.getP12()<<endl;
+                cout << "P1T=" << mv.getP1T()<<endl;
+                       
+                
+                cout << "P20=" << mv.getP20()<<endl;
+                cout << "P21=" << mv.getP21()<<endl;
+                cout << "P2T=" << mv.getP2T()<<endl;
+                
     double WiFiStatus = -1,chageStatus=-1;
     int countR1 = 0, countR2=0;
     for(int i=0;i<Nsim;i++)
